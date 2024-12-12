@@ -1,0 +1,376 @@
+/**
+* @theme srj_template 
+ */
+
+@import "uncover";
+
+section {
+    --color-background: #fdfcff;
+    --color-background-code: #f2f1f4;
+    --color-background-paginate: rgba(32, 34, 40, 0.05);
+    --color-foreground: #202228;
+    --color-highlight: #009dd5;
+    --color-highlight-hover: #087eaa;
+    --color-highlight-heading: #33b1dd;
+    --color-header: rgba(32, 34, 40, 0.4);
+    --color-header-shadow: rgba(253, 252, 255, 0.8);
+}
+
+section:where(.invert) {
+    --color-background: rgba(#202228, 0.1);
+    --color-background-code: #f2f1f4;
+    --color-background-paginate: rgba(32, 34, 40, 0.05);
+    --color-foreground: #fdfcff;
+    --color-highlight: #009dd5;
+    --color-highlight-hover: #087eaa;
+    --color-highlight-heading: #33b1dd;
+    --color-header: rgba(#fdfcff, 0.4);
+    --color-header-shadow: rgba(#202228, 0.8);
+}
+
+.subheadings {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: 0.75rem;
+    padding-left: 0rem;
+}
+
+.subheading {
+    display: flex;
+    justify-content: center;
+}
+
+.subheading > h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.subheading > p {
+    margin: 0;
+}
+
+section:where(.slide) {
+    display: flex;
+    justify-content: start;
+}
+
+section:where(.slide) p {
+    font-size: x-large;
+    display: flex;
+    justify-content: start;
+    text-align: left;
+}
+
+.morph {
+    view-transition-name: var(--morph-name);
+    vertical-align: top;
+    contain: layout;
+}
+
+section footer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+section:where(.glitch_screen) * {
+    animation: glitch 1s linear infinite;
+}
+
+div {
+    animation: glitch 1s linear infinite;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.row > * {
+    min-width: 40%;
+}
+
+li > p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.col-2 {
+    min-width: 40%;
+}
+
+.col > marp-pre {
+    width: 100%;
+}
+
+img[alt="1"] {
+    view-transition-name: one;
+    contain: layout; /* required */
+}
+
+img[alt="2"] {
+    view-transition-name: two;
+    contain: layout; /* required */
+}
+img[alt="3"] {
+    view-transition-name: three;
+    contain: layout; /* required */
+}
+img[alt="j"] {
+    view-transition-name: four;
+    contain: layout; /* required */
+}
+img[alt="5"] {
+    view-transition-name: five;
+    contain: layout; /* required */
+}
+img[alt="6"] {
+    view-transition-name: six;
+    contain: layout; /* required */
+}
+img:is([alt="1"], [alt="2"], [alt="3"],[alt="4"], [alt="5"],[alt="6"]) {
+    height: 64px;
+    position: relative;
+    vertical-align: middle;
+    width: 64px;
+}
+
+ul {
+    font-size: xx-large;
+    font-weight: 400;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    display: flex;
+    text-align: start;
+    float: left;
+}
+
+h3 {
+    padding-top: 1rem;
+    display: flex;
+    text-align: start;
+    float: left;
+}
+
+section:where(.centre) h3 {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+h3 img {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* glitch effect */
+
+@keyframes glitch {
+    2%,
+    64% {
+        transform: translate(2px, 0) skew(0deg);
+    }
+    4%,
+    60% {
+        transform: translate(-2px, 0) skew(0deg);
+    }
+    62% {
+        transform: translate(0, 0) skew(5deg);
+    }
+}
+
+section:where(.glitch_screen) *:before,
+section:where(.glitch_screen) *:after 
+{
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+
+section:where(.glitch_screen) *:before {
+    z-index: -1;
+    color: var(--color-highlight);
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 66%, 0 66%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 66%, 0 66%);
+}
+
+@keyframes glitchTop {
+    2%,
+    64% {
+        transform: translate(2px, -2px);
+    }
+    4%,
+    60% {
+        transform: translate(-2px, 2px);
+    }
+    62% {
+        transform: translate(13px, -1px) skew(-13deg);
+    }
+}
+
+section:where(.glitch_screen) *:after {
+    z-index: -1;
+    color: var(--color-highlight);
+    animation: glitchBotom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+    2%,
+    64% {
+        transform: translate(-2px, 0);
+    }
+    4%,
+    60% {
+        transform: translate(-2px, 0);
+    }
+    62% {
+        transform: translate(-22px, 5px) skew(21deg);
+    }
+    80% {
+        transform: translate(-10px, 3px) skew(1);
+    }
+}
+
+/*!
+  Theme: GitHub Dark Dimmed
+  Description: Dark dimmed theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Colors taken from GitHub's CSS
+*/
+
+marp-pre > code {
+    color: #adbac7 !important;
+    background: #22272e !important;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+    /* prettylights-syntax-keyword */
+    color: #f47067;
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+    /* prettylights-syntax-entity */
+    color: #dcbdfb;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+    /* prettylights-syntax-constant */
+    color: #6cb6ff;
+}
+
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+    /* prettylights-syntax-string */
+    color: #96d0ff;
+}
+
+.hljs-built_in,
+.hljs-symbol {
+    /* prettylights-syntax-variable */
+    color: #f69d50;
+}
+
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+    /* prettylights-syntax-comment */
+    color: #768390;
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+    /* prettylights-syntax-entity-tag */
+    color: #8ddb8c;
+}
+
+.hljs-subst {
+    /* prettylights-syntax-storage-modifier-import */
+    color: #adbac7;
+}
+
+.hljs-section {
+    /* prettylights-syntax-markup-heading */
+    color: #316dca;
+    font-weight: bold;
+}
+
+.hljs-bullet {
+    /* prettylights-syntax-markup-list */
+    color: #eac55f;
+}
+
+.hljs-emphasis {
+    /* prettylights-syntax-markup-italic */
+    color: #adbac7;
+    font-style: italic;
+}
+
+.hljs-strong {
+    /* prettylights-syntax-markup-bold */
+    color: #adbac7;
+    font-weight: bold;
+}
+
+.hljs-addition {
+    /* prettylights-syntax-markup-inserted */
+    color: #b4f1b4;
+    background-color: #1b4721;
+}
+
+.hljs-deletion {
+    /* prettylights-syntax-markup-deleted */
+    color: #ffd8d3;
+    background-color: #78191b;
+}
+
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+    /* purposely ignored */
+}
